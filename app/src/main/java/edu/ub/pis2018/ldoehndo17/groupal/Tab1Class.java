@@ -3,11 +3,16 @@ package edu.ub.pis2018.ldoehndo17.groupal;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Lukaz on 14/03/2018.
@@ -15,11 +20,46 @@ import android.widget.TextView;
 
 public class Tab1Class extends Fragment {
 
+    RecyclerView recyclerView;
+    List<Grupo> dataset;
+    RecycleViewAdapter adapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_tab1, container, false);
+        View vista = inflater.inflate(R.layout.fragment_lista_grupos, container, false);
+        recyclerView = vista.findViewById(R.id.lista_grupos);
+        recyclerView.setHasFixedSize(true);
+        dataset = new ArrayList<>();
+        llenarDataset();
+        adapter = new RecycleViewAdapter(getContext(),dataset);
+        recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(new RecycleViewItemDecorator(20));
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        return vista;
 
-        return rootView;
+    }
+    public void llenarDataset(){
+        Grupo grupo = new Grupo("Cosmocaixa","3 de 24",R.drawable.f1);
+        dataset.add(grupo);
+        grupo = new Grupo("Mc.Donalds","1 de 2",R.drawable.f2);
+        dataset.add(grupo);
+        grupo = new Grupo("Port Aventura","6 de 48",R.drawable.f3);
+        dataset.add(grupo);
+        grupo = new Grupo("Viñarock","1  de 4",R.drawable.f5);
+        dataset.add(grupo);
+        grupo = new Grupo("Limpiar playa Barcelona","89 de 100",R.drawable.f4);
+        dataset.add(grupo);
+        grupo = new Grupo("Limpiar playa Barcelona","89 de 100",R.drawable.f4);
+        dataset.add(grupo);
+        grupo = new Grupo("Limpiar playa Barcelona","89 de 100",R.drawable.f4);
+        dataset.add(grupo);
+        grupo = new Grupo("Limpiar playa Barcelona","89 de 100",R.drawable.f4);
+        dataset.add(grupo);
+        grupo = new Grupo("Limpiar playa Barcelona","89 de 100",R.drawable.f4);
+        dataset.add(grupo);
+        grupo = new Grupo("Limpiar playa Barcelona","89 de 100",R.drawable.f4);
+        dataset.add(grupo);
+
     }
 }
