@@ -1,15 +1,13 @@
 package edu.ub.pis2018.ldoehndo17.groupal;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,18 +21,22 @@ public class Tab1Class extends Fragment {
     RecyclerView recyclerView;
     List<Grupo> dataset;
     RecycleViewAdapter adapter;
+    AppCompatActivity main;
+
+    public void setMain(AppCompatActivity main) {
+        this.main = main;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View vista = inflater.inflate(R.layout.fragment_lista_grupos, container, false);
+        View vista = inflater.inflate(R.layout.activity_tab1, container, false);
         recyclerView = vista.findViewById(R.id.lista_grupos);
         recyclerView.setHasFixedSize(true);
         dataset = new ArrayList<>();
         llenarDataset();
-        adapter = new RecycleViewAdapter(getContext(),dataset);
+        adapter = new RecycleViewAdapter(getContext(),dataset,main);
         recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new RecycleViewItemDecorator(20));
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
         return vista;
 

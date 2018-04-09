@@ -3,6 +3,7 @@ package edu.ub.pis2018.ldoehndo17.groupal;
 import android.app.Dialog;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -104,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
 
                     Tab1Class tab1 = new Tab1Class();
+                    tab1.setMain(MainActivity.this);
                     return tab1;
 
                 case 1:
